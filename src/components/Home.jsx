@@ -324,7 +324,7 @@ export default function Home() {
                                           dispatch({"type":"Dislike","payload":index})
 
                                           item.like_count = item.like_count - 1;
-                                          HandleLikeDelete(item.post_id,item.author_id)
+                                          HandleLikeDelete(item.post_id,userdata.userid,)
                                         } else {
                                           dispatch({"type":"Like","payload":index})
                                           item.like_count = item.like_count + 1;
