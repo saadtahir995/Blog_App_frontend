@@ -1,0 +1,149 @@
+/* Home.css */
+.container {
+    padding: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .create-icon {
+    width: 4rem;
+    height: 4rem;
+    margin-left: 6%;
+    cursor: pointer;
+  }
+  
+  .alert {
+    margin-top: 10px;
+  }
+  
+  .logout-icon {
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 10px;
+  }
+  
+  .username {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .post-time {
+    font-size: 12px;
+    color: #777;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .post-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .action {
+    display: flex;
+    align-items: center;
+  }
+  
+  .like-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .like-icon.liked {
+    color: blue;
+  }
+  
+  .comment-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    color: #333;
+    margin-right: 5px;
+  }
+  
+  .comment-count,
+  .like-count {
+    margin-left: 5px;
+  }
+  /* Home.css */
+/* Home.css */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); /* Increased shadow */
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Increased shadow */
+  }
+/* Home.css */
+.toggle-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 20px;
+  }
+  
+  .dark-mode-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .light-mode {
+    background-color: #ffffff;
+    color: #333333;
+  }
+  
+  .dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  

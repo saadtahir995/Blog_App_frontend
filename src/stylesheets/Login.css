@@ -1,0 +1,104 @@
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Dark Mode */
+  .dark-mode .login-container {
+    background-color: #333333;
+  }
+  
+  /* Login Form */
+  .login-form {
+    width: 350px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Signup Link */
+  .signup-link {
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  /* Login Button */
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Disabled Button */
+  .login-btn.disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+  }
+  
+  /* Success Alert */
+  .alert-success {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    color: #155724;
+  }
+  
+  /* Error Alert */
+  .alert-danger {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    color: #721c24;
+  }
+  
+  /* Form Inputs */
+  .form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Dark Mode Form Inputs */
+  .dark-mode .form-control {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  /* Email Help Text */
+  .form-text {
+    font-size: 12px;
+    color: #6c757d;
+  }
+  
+  /* Spinner */
+  .spinner-border {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+  }
+  
+  /* Dark Mode Spinner */
+  .dark-mode .spinner-border {
+    border: 3px solid rgba(255, 255, 255, 0.5);
+  }
+  

@@ -1,0 +1,52 @@
+/* Styles for the DeleteConfirmation component */
+.delete-confirmation {
+    position: relative;
+  }
+  
+  .delete-button {
+    background: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+  }
+  
+  .delete-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: black;
+  }
+  
+  .confirmation-dialog {
+    position: absolute;
+    top: -5px;
+    right: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 250px;
+  }
+  
+  .confirmation-dialog p {
+    margin: 0 0 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .cancel-button,
+  .confirm-button {
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .confirm-button {
+    background-color: #ff6347;
+    color: white;
+  }
+  
