@@ -15,7 +15,7 @@ const Profile = ({ username, triggeroff, userid}) => {
     if (!localStorage.getItem('token')) {
       navigate('/');
     }
-    const url = `http://192.168.43.52:9000/api/blog/getposts/${userid}`;
+    const url = `https://blog-app-backend-peach.vercel.app/api/blog/getposts/${userid}`;
     fetch(url, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {

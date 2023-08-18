@@ -21,7 +21,7 @@ const EditPost = () => {
         const token=localStorage.getItem('token');
         const decoded=jwt_decode(token);
         const authorid=decoded.id;
-        const response = await fetch(`http://192.168.43.52:9000/api/blog/getpost/${id}/${authorid}}`);
+        const response = await fetch(`https://blog-app-backend-peach.vercel.app/api/blog/getpost/${id}/${authorid}}`);
         const data = await response.json();
         if(data.message)
         {
@@ -54,7 +54,7 @@ const EditPost = () => {
     // Update post data using an API call
     const postData = { title, content };
     try {
-      const response = await fetch(`http://192.168.43.52:9000/api/blog/updatepost/${id}`, {
+      const response = await fetch(`https://blog-app-backend-peach.vercel.app/api/blog/updatepost/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

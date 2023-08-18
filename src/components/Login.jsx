@@ -63,7 +63,7 @@ export default function Login() {
         credentials:'include',
         body:JSON.stringify({email:state.email,password:state.password})
       }
-      const response= await fetch('http://192.168.43.52:9000/api/auth/login',options);
+      const response= await fetch('https://blog-app-backend-peach.vercel.app/api/auth/login',options);
       const data=await response.json();
       if(data.isLoggedin){
         //document.cookie=`token=${data.username}`;

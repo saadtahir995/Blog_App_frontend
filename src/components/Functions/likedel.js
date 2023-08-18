@@ -1,5 +1,5 @@
 const likedel=(postid,userid)=>{
-    const url=`http://192.168.43.52:9000/api/blog/deletelike/${postid}/${userid}`;
+    const url=`https://blog-app-backend-peach.vercel.app/api/blog/deletelike/${postid}/${userid}`;
     return fetch(url,{
         method:'DELETE',
         headers:{

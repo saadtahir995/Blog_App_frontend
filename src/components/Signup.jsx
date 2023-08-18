@@ -39,7 +39,7 @@ const Signup = ({triggeroff}) => {
       credentials:'include',
       body:JSON.stringify({formData})
     }
-    const response= await fetch('http://192.168.43.52:9000/api/newuser/signup',options);
+    const response= await fetch('https://blog-app-backend-peach.vercel.app/api/newuser/signup',options);
     const data=await response.json();
     setTimeout(()=>{
       setIsLoading(false);

@@ -30,7 +30,7 @@ const Feedback = () => {
         credentials:'include',
         body:JSON.stringify({name: username,email:email,message:feedback})
     }
-    const url='http://192.168.43.52:9000/api/review/feedback'
+    const url='https://blog-app-backend-peach.vercel.app/api/review/feedback'
     const response = await fetch(url,options);
     const data=await response.json();
     setMessage(data.message);
@@ -44,7 +44,7 @@ const Feedback = () => {
     setUsername(decoded.username);
 
     const id=decoded.id;
-   fetch(`http://192.168.43.52:9000/api/data/userdata/${id}`).then((response)=>response.json())
+   fetch(`https://blog-app-backend-peach.vercel.app/api/data/userdata/${id}`).then((response)=>response.json())
     .then((data)=>{
         setEmail(data.email)
     })

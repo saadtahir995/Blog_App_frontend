@@ -13,7 +13,7 @@ const CommentBox = ({ postId, commentcountadd, commentcountsub,Uid ,Uname}) => {
   
 
   useEffect(() => {
-    const url = `http://192.168.43.52:9000/api/blog/getcomments/${postId}`;
+    const url = `https://blog-app-backend-peach.vercel.app/api/blog/getcomments/${postId}`;
     const options = {
       method: "GET",
       headers: {
@@ -39,7 +39,7 @@ const CommentBox = ({ postId, commentcountadd, commentcountsub,Uid ,Uname}) => {
         credentials: "include",
         body: JSON.stringify({ newComment: newComment, commentid: comment_id }),
       };
-      const url = `http://192.168.43.52:9000/api/blog/updatecomment`;
+      const url = `https://blog-app-backend-peach.vercel.app/api/blog/updatecomment`;
       const response = await fetch(url, options);
       const data = await response.json();
       setMessage(data.message);
@@ -64,7 +64,7 @@ const CommentBox = ({ postId, commentcountadd, commentcountsub,Uid ,Uname}) => {
           authorid: Uid,
         }),
       };
-      const url = "http://192.168.43.52:9000/api/blog/addcomment";
+      const url = "https://blog-app-backend-peach.vercel.app/api/blog/addcomment";
       const response = await fetch(url, options);
       const data = await response.json();
       commentcountadd();
@@ -91,7 +91,7 @@ const CommentBox = ({ postId, commentcountadd, commentcountsub,Uid ,Uname}) => {
       },
       credentials: "include",
     };
-    const url = `http://192.168.43.52:9000/api/blog/deletecomment/${id}`;
+    const url = `https://blog-app-backend-peach.vercel.app/api/blog/deletecomment/${id}`;
     const response = await fetch(url, options);
     const data = await response.json();
     setMessage(data.message);

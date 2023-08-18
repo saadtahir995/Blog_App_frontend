@@ -16,7 +16,7 @@ const [confirmPassword,setConfirmPassword]=useState('');
     e.preventDefault();
     try {
       // Send a request to the server to check if the email exists and send reset code
-      const response = await fetch('http://192.168.43.52:9000/api/reset-password/request', {
+      const response = await fetch('https://blog-app-backend-peach.vercel.app/api/reset-password/request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const [confirmPassword,setConfirmPassword]=useState('');
     e.preventDefault();
     try {
       // Send a request to the server to verify the reset code
-      const response = await fetch('http://192.168.43.52:9000/api/reset-password/verify', {
+      const response = await fetch('https://blog-app-backend-peach.vercel.app/api/reset-password/verify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const [confirmPassword,setConfirmPassword]=useState('');
         },
         body:JSON.stringify({email,newPassword})
       }
-      const response=await fetch('http://192.168.43.52:9000/api/reset-password/newpassword',options);
+      const response=await fetch('https://blog-app-backend-peach.vercel.app/api/reset-password/newpassword',options);
       const data=await response.json();
       setMessage1(data.message);
       setTimeout(() => {

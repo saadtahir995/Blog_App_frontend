@@ -58,7 +58,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       const id = userdata.userid;
-      const url = `http://192.168.43.52:9000/api/blog/getallposts/${id}`;
+      const url = `https://blog-app-backend-peach.vercel.app/api/blog/getallposts/${id}`;
       const response = await fetch(url, { credentials: "include" });
       const data = await response.json();
       setTimeout(() => {
@@ -78,7 +78,7 @@ export default function Home() {
       credentials: "include",
       body: JSON.stringify({ postData }),
     };
-    const url = "http://192.168.43.52:9000/api/blog/postmaker";
+    const url = "https://blog-app-backend-peach.vercel.app/api/blog/postmaker";
     const response = await fetch(url, options);
     const data = await response.json();
 
@@ -152,7 +152,7 @@ export default function Home() {
       },
       credentials: "include",
     };
-    const url = `http://192.168.43.52:9000/api/blog/deletepost/${postId}`;
+    const url = `https://blog-app-backend-peach.vercel.app/api/blog/deletepost/${postId}`;
     const response = await fetch(url, options);
     await response.json();
     dispatch({ type: 'DeletePost', payload: itemid })
@@ -315,7 +315,7 @@ export default function Home() {
                                       }),
                                     };
                                     const url =
-                                      "http://192.168.43.52:9000/api/blog/addlike";
+                                      "https://blog-app-backend-peach.vercel.app/api/blog/addlike";
                                     fetch(url, options)
                                       .then((response) => response.json())
                                       .then((data) => {
