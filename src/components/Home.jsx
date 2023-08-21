@@ -138,7 +138,7 @@ export default function Home() {
       case "DeletePost":
         //const newPostData = [...state.PostData];
         //newPostData.splice(action.payload, 1)
-         newPostData = state.PostData.filter((post, index) => index !== action.payload);
+         const newPostData = state.PostData.filter((post, index) => index !== action.payload);
 
         return { ...state, PostData: newPostData };
 
