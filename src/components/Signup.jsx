@@ -31,6 +31,8 @@ const Signup = ({triggeroff}) => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setErrorSignedUp(false);
+    setIsSignedUp(false);
     setIsLoading(true);
     const options={
       method:'POST',
