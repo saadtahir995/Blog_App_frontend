@@ -9,7 +9,9 @@ const BlogPostMaker = ({ onSubmit,uid }) => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title || !content) {
+    const trimmedTitle = title.trim();
+  const trimmedContent = content.trim();
+    if (!trimmedTitle || !trimmedContent) {
       alert('Please fill all the fields');
       return;
     }
