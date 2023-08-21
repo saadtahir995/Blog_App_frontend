@@ -42,13 +42,14 @@ const Signup = ({triggeroff}) => {
     }
     const response= await fetch('https://blog-app-backend-peach.vercel.app/api/newuser/signup',options);
     const data=await response.json();
-    if(data.isSignedUp){
-      setIsSignedUp(true);
-    }
-    else{setErrorSignedUp(true);}
+    
     setTimeout(()=>{
       setIsLoading(false);
       setMessage(data.message);
+      if(data.IsSignedUp){
+        setIsSignedUp(true);
+      }
+      else{setErrorSignedUp(true);}
     
     },2000);
     
