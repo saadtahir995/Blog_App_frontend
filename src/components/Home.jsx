@@ -136,8 +136,10 @@ export default function Home() {
         newisLikedd[action.payload] = false;
         return { ...state, isLiked: newisLikedd };
       case "DeletePost":
-        const newPostData = [...state.PostData];
-        newPostData.splice(action.payload, 1)
+        //const newPostData = [...state.PostData];
+        //newPostData.splice(action.payload, 1)
+         newPostData = state.PostData.filter((post, index) => index !== action.payload);
+
         return { ...state, PostData: newPostData };
 
       default:
