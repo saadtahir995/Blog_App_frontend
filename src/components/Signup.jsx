@@ -41,13 +41,14 @@ const Signup = ({triggeroff}) => {
     }
     const response= await fetch('https://blog-app-backend-peach.vercel.app/api/newuser/signup',options);
     const data=await response.json();
-    setTimeout(()=>{
-      setIsLoading(false);
-      setMessage(data.message);
     if(data.isSignedUp){
       setIsSignedUp(true);
     }
     else{setIsSignedUp(false);}
+    setTimeout(()=>{
+      setIsLoading(false);
+      setMessage(data.message);
+    
     },2000);
     
   };
@@ -58,7 +59,16 @@ const Signup = ({triggeroff}) => {
 
       <form className="signup-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
-        {isSignedUp ? <div className="alert alert-success" role="alert"> {message} </div> :(message?(<div className="alert alert-danger" role='alert'>{message}</div>):null)}
+        {isSignedUp ? (
+  <div className="alert alert-success" role="alert">
+    {message}
+  </div>
+) : message ? (
+  <div className="alert alert-danger" role="alert">
+    {message}
+  </div>
+) : null}
+
         <div className="form-group">
           <input
             type="text"
