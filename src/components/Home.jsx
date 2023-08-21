@@ -138,7 +138,7 @@ export default function Home() {
       case "DeletePost":
         //const newPostData = [...state.PostData];
         //newPostData.splice(action.payload, 1)
-         const newPostData = state.PostData.filter((post, index) => index !== action.payload);
+        const newPostData = state.PostData.filter(post => post.post_id !== action.payload);
 
         return { ...state, PostData: newPostData };
 
@@ -157,7 +157,7 @@ export default function Home() {
     const url = `https://blog-app-backend-peach.vercel.app/api/blog/deletepost/${postId}`;
     const response = await fetch(url, options);
     await response.json();
-    dispatch({ type: 'DeletePost', payload: itemid })
+    dispatch({ type: 'DeletePost', payload: postId })
   }
 
   const [state, dispatch] = useReducer(reducer, InitialState);
