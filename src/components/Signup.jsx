@@ -13,6 +13,7 @@ const Signup = ({triggeroff}) => {
   const[isLoading,setIsLoading]=useState(false);
   const[isSignedUp,setIsSignedUp]=useState(false);
   const[message,setMessage]=useState('');
+  const [errorSignedUp, setErrorSignedUp] = useState(false);
 
   const handleChange = (e) => {
     if(e.target.name === 'confirmPassword'){
@@ -44,7 +45,7 @@ const Signup = ({triggeroff}) => {
     if(data.isSignedUp){
       setIsSignedUp(true);
     }
-    else{setIsSignedUp(false);}
+    else{setErrorSignedUp(true);}
     setTimeout(()=>{
       setIsLoading(false);
       setMessage(data.message);
@@ -59,15 +60,16 @@ const Signup = ({triggeroff}) => {
 
       <form className="signup-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
-        {isSignedUp ? (
-  <div className="alert alert-success" role="alert">
-    {message}
-  </div>
-) : message ? (
-  <div className="alert alert-danger" role="alert">
-    {message}
-  </div>
-) : null}
+        {isSignedUp && (
+        <div className="alert alert-success" role="alert">
+          {message}
+        </div>
+      )}
+      {errorSignedUp && (
+        <div className="alert alert-danger" role='alert'>
+          {message}
+        </div>
+      )}
 
         <div className="form-group">
           <input
