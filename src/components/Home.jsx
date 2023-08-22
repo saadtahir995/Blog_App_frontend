@@ -5,6 +5,7 @@ import CommentBox from "./CommentBox";
 import BlogPostMaker from "./BlogPostMaker";
 import { IoIosCreate } from "react-icons/io";
 import { BiUserCircle, BiLogOut } from "react-icons/bi";
+import Cookies from 'js-cookie';
 import Profile from "./Profile";
 import { AiFillLike,AiFillEdit} from "react-icons/ai";
 import { FaComments } from "react-icons/fa";
@@ -230,6 +231,7 @@ export default function Home() {
                   }}
                   onClick={() => {
                     localStorage.removeItem("token");
+                    Cookies.remove("token");
                     navigate("/");
                   }}
                 />

@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer,useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 import '../stylesheets/Login.css'
 import Signup from "./Signup";
@@ -82,6 +82,11 @@ export default function Login() {
     }
 
   };
+  useEffect(() => {
+    if(document.cookie.includes('token')){
+      navigate('/home');
+    }
+  }, [])
 
   return (
     <>
