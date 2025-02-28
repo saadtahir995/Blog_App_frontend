@@ -10,8 +10,6 @@ const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }
   const [newComment, setNewComment] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [commentToDelete, setCommentToDelete] = useState(null);
   const isDarkMode = JSON.parse(localStorage.getItem("isDarkMode"));
 
   useEffect(() => {
@@ -159,28 +157,16 @@ const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }
                   <PostedTime publishDate={comment.comment_date} />
                 </small>
                 {!isGuest && comment.user_id === authorId && (
-                  <button
-                    className="btn btn-danger btn-sm float-end"
-                    onClick={() => {
-                      setCommentToDelete(comment.comment_id);
-                      setShowDeleteConfirmation(true);
-                    }}
-                  >
-                    Delete
-                  </button>
+                  <DeleteConfirmation
+                    onDelete={() => handleDeleteComment(comment.comment_id)}
+                    postId={comment.comment_id}
+                  />
                 )}
               </div>
               <div className="comment-body">{comment.comment_text}</div>
             </div>
           ))}
         </div>
-      )}
-      {showDeleteConfirmation && (
-        <DeleteConfirmation
-          show={showDeleteConfirmation}
-          onClose={() => setShowDeleteConfirmation(false)}
-          onConfirm={() => handleDeleteComment(commentToDelete)}
-        />
       )}
     </div>
   );
