@@ -25,7 +25,14 @@ const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }
     };
     fetch(url, options)
       .then((response) => response.json())
-      .then((data) => setComments(data.rows));
+      .then((data) => {
+        // Ensure comment_date is properly formatted
+        const formattedComments = data.rows.map(comment => ({
+          ...comment,
+          comment_date: new Date(comment.comment_date).toISOString()
+        }));
+        setComments(formattedComments);
+      });
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -63,6 +70,7 @@ const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }
           comment_text: newComment,
           username: jwt_decode(localStorage.getItem("token")).username,
           comment_date: new Date().toISOString(),
+          user_id: authorId
         };
         setComments([newcomment, ...comments]);
         setNewComment("");
@@ -134,7 +142,7 @@ const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }
               <div className="comment-header">
                 <strong>{comment.username}</strong>
                 <small className="text-muted">
-                  <PostedTime date={comment.comment_date} />
+                  <PostedTime publishDate={comment.comment_date} />
                 </small>
                 {!isGuest && comment.user_id === authorId && (
                   <button
