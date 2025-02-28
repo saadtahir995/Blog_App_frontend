@@ -15,6 +15,10 @@ export default function Login() {
         return { ...state, isLoading: true,error: false,status: "Logging in..." };
       case "ERROR":
         return { ...state, error: true,isLoading: false,isLoggedin: false,status: "Submit" };
+      case "GUEST_LOADING":
+        return { ...state, isGuestLoading: true };
+      case "GUEST_LOGIN":
+        return { ...state, isGuestLoading: false, isLoggedin: true };
       case "UPDATED_FIELD":
         if (action.field === "email") {
           return {
@@ -41,6 +45,7 @@ export default function Login() {
   const initialState = {
     isLoggedin: false,
     isLoading: false,
+    isGuestLoading: false,
     error: false,
     email: "",
     password: "",
@@ -82,6 +87,33 @@ export default function Login() {
     }
 
   };
+
+  const handleGuestLogin = async () => {
+    dispatch({ type: "GUEST_LOADING" });
+    try {
+      const response = await fetch('https://blog-app-backend-peach.vercel.app/api/auth/guest-login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      });
+      const data = await response.json();
+      if (data.isLoggedin) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('isGuest', 'true');
+        setTimeout(() => {
+          dispatch({ type: "GUEST_LOGIN" });
+        }, 2000);
+        setTimeout(() => {
+          navigate('/home');
+        }, 4000);
+      }
+    } catch (error) {
+      dispatch({ type: "ERROR" });
+    }
+  };
+
   useEffect(() => {
     if(document.cookie.includes('token')){
       navigate('/home');
@@ -141,6 +173,18 @@ export default function Login() {
             <button type="Submit" className={`login-btn ${state.isLoading ? 'disabled' : ''}`}>
               {state.isLoading ? (<div className="spinner-border spinner-border-sm" role="status"></div>) : state.status}
             </button>
+
+            <button 
+              type="button" 
+              onClick={handleGuestLogin} 
+              className={`login-btn guest-btn ${state.isGuestLoading ? 'disabled' : ''}`}
+              style={{ marginTop: '10px', backgroundColor: '#6c757d' }}
+            >
+              {state.isGuestLoading ? (
+                <div className="spinner-border spinner-border-sm" role="status"></div>
+              ) : 'Continue as Guest'}
+            </button>
+
             {state.isLoggedin ? (<div className="alert alert-success" role="alert">Logged in Successfully</div>) : null}
           </form>
         </div>
