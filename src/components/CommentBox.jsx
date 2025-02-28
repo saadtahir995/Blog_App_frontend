@@ -48,26 +48,38 @@ const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }
     if (!newComment.trim()) return;
 
     try {
+      console.log('Sending comment data:', { // Debug log
+        newComment,
+        postId,
+        authorid: authorId
+      });
+
       const response = await fetch(
         "https://blog-app-backend-peach.vercel.app/api/blog/addcomment",
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           credentials: "include",
           body: JSON.stringify({
-            newComment,
-            postId,
-            authorid: authorId,
-          }),
+            newComment: newComment.trim(),
+            postId: parseInt(postId),
+            authorid: parseInt(authorId)
+          })
         }
       );
+
       const data = await response.json();
-      if (response.ok) {
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to add comment');
+      }
+
+      if (data.id) {
         const newcomment = {
           comment_id: data.id,
-          comment_text: newComment,
+          comment_text: newComment.trim(),
           username: jwt_decode(localStorage.getItem("token")).username,
           comment_date: new Date().toISOString(),
           user_id: authorId
@@ -75,10 +87,12 @@ const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }
         setComments([newcomment, ...comments]);
         setNewComment("");
         onCommentAdd();
+      } else {
+        throw new Error('No comment ID returned from server');
       }
     } catch (err) {
       console.error("Error adding comment:", err);
-      setError("Failed to add comment");
+      setError(err.message || "Failed to add comment");
       setTimeout(() => setError(null), 3000);
     }
   };
