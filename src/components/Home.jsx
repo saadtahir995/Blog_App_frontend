@@ -26,6 +26,7 @@ export default function Home() {
   const [Username, setUsername] = useState("");
   const [Id, setId] = useState();
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isGuest, setIsGuest] = useState(false);
   const [userdata, setUserData] = useState({
     username: "",
     userid: "",
@@ -36,10 +37,11 @@ export default function Home() {
     if (!localStorage.getItem("token")) {
       navigate("/");
     } else {
-      const token=localStorage.getItem("token");
-    const decoded=jwt_decode(token);
-    setUserData({username:decoded.username,userid:decoded.id})
-    setId(decoded.id);
+      const token = localStorage.getItem("token");
+      const decoded = jwt_decode(token);
+      setUserData({username: decoded.username, userid: decoded.id});
+      setId(decoded.id);
+      setIsGuest(localStorage.getItem("isGuest") === "true");
       dispatch({
         type: "Personalizedname",
         payload: decoded.username,
@@ -53,8 +55,6 @@ export default function Home() {
       document.body.style.backgroundColor = null;
       document.body.style.color = null;
     }
-
-    //api call to get all posts
   }, []);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -200,25 +200,27 @@ export default function Home() {
   />
 </div>
                 <h1 className="text-center mt-3">
-                  Welcome {state.Personalizedname}
+                  Welcome {state.Personalizedname} {isGuest && "(Guest)"}
                 </h1>
-                <IoIosCreate
-                  style={{ width: "4rem", height: "4rem", marginLeft: "6%" }}
-                  onClick={() => {
-                    if (state.ShowPostMake) {
-                      dispatch({ type: "HidePostMake" });
-                    } else {
-                      dispatch({ type: "ShowPostMake" });
-                    }
-                  }}
-                />
+                {!isGuest && (
+                  <IoIosCreate
+                    style={{ width: "4rem", height: "4rem", marginLeft: "6%" }}
+                    onClick={() => {
+                      if (state.ShowPostMake) {
+                        dispatch({ type: "HidePostMake" });
+                      } else {
+                        dispatch({ type: "ShowPostMake" });
+                      }
+                    }}
+                  />
+                )}
                 {Postmsg && (
                   <div className="alert alert-success" role="alert">
                     {Postmsg}
                   </div>
                 )}
-                {state.ShowPostMake ? (
-                  <BlogPostMaker onSubmit={HandlePostSubmit}uid={userdata.userid}/>
+                {state.ShowPostMake && !isGuest ? (
+                  <BlogPostMaker onSubmit={HandlePostSubmit} uid={userdata.userid}/>
                 ) : null}
                 <BiLogOut
                   style={{
@@ -231,6 +233,7 @@ export default function Home() {
                   }}
                   onClick={() => {
                     localStorage.removeItem("token");
+                    localStorage.removeItem("isGuest");
                     Cookies.remove("token");
                     navigate("/");
                   }}
