@@ -340,9 +340,12 @@ export default function Home() {
                                   }}
                                 />
                                 {state.PostShowcomments[index] ? (
-                                  <CommentBox postId={item.post_id} commentcountadd={commentcountadd} commentcountsub={commentcountsub}
-                                  Uid={userdata.userid}
-                                  Uname={userdata.username}
+                                  <CommentBox 
+                                    postId={item.post_id} 
+                                    authorId={userdata.userid}
+                                    isGuest={isGuest}
+                                    onCommentAdd={commentcountadd}
+                                    onCommentDelete={commentcountsub}
                                   />
                                 ) : null}
                               </div>
