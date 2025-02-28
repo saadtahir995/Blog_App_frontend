@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { AiFillDelete, AiOutlineEdit } from "react-icons/ai";
 import "../stylesheets/CommentBox.css"; // Import the CSS file for styling
 import jwt_decode from "jwt-decode";
+import PostedTime from "./PostedTime";
+import DeleteConfirmation from "./DeleteConfirmation";
 
 const CommentBox = ({ postId, authorId, isGuest, onCommentAdd, onCommentDelete }) => {
   const [comments, setComments] = useState([]);
